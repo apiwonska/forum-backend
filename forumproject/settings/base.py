@@ -18,6 +18,8 @@ env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
     ALLOWED_HOSTS=(str, ""),
+    CORS_ALLOW_ALL_ORIGINS=(bool, False),
+    CORS_ORIGIN_WHITELIST=(str, "")
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -153,11 +155,6 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 5,
 }
 
-
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "https://forum-ap.netlify.app"
-]
-
+CORS_ORIGIN_WHITELIST=env("CORS_ORIGIN_WHITELIST").split(",")
 
 TESTING_MODE = "test" in sys.argv
