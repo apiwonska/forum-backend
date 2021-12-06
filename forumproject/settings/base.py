@@ -78,7 +78,7 @@ ROOT_URLCONF = "forumproject.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["build"],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -131,7 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "build/static")]
+STATICFILES_DIRS = []
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Media files
@@ -153,9 +153,11 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 5,
 }
 
-if DEBUG:
-    CORS_ORIGIN_WHITELIST = [
-        "http://localhost:3000",
-    ]
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "https://forum-ap.netlify.app"
+]
+
 
 TESTING_MODE = "test" in sys.argv

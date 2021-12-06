@@ -28,8 +28,6 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/', include('users.api.urls')),
     path('admin/', admin.site.urls),
-    # any path that does not start with api or admin
-    re_path(r'^(?!api|admin)(.*)?$', index, name='index'),
 ]
 
 if settings.DEBUG:
