@@ -1,13 +1,14 @@
 import os
+import sys
 import environ
-from .base import DEBUG, BASE_DIR, TESTING_MODE
+from .base import DEBUG, BASE_DIR
 
 env = environ.Env(
     # set casting, default value
     EMAIL_USE_TLS=(bool, False),
 )
 
-if DEBUG:
+if DEBUG or "test" in sys.argv:
     EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
     EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 else:
@@ -18,7 +19,3 @@ else:
     EMAIL_USE_TLS = env('EMAIL_USE_TLS')
     EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
-
-if TESTING_MODE:
-    EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-    EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")

@@ -157,4 +157,3 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_WHITELIST=env("CORS_ORIGIN_WHITELIST").split(",")
 
-TESTING_MODE = "test" in sys.argv
