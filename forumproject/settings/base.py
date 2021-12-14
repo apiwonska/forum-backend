@@ -157,12 +157,14 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
-CORS_ORIGIN_WHITELIST=env("CORS_ORIGIN_WHITELIST").split(",")
+if env("CORS_ORIGIN_WHITELIST"):
+    CORS_ORIGIN_WHITELIST=env("CORS_ORIGIN_WHITELIST").split(",")
+else:
+    CORS_ORIGIN_WHITELIST=[]
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Forum API',
     'DESCRIPTION': 'REST API documentation for Forum Project. Created by Anna Piwońska',
     'VERSION': '1.0.0',
-    # OTHER SETTINGS
 }
 

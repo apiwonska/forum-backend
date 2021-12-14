@@ -7,7 +7,7 @@ from .base import BASE_DIR
 # To use these settings in developement mode to run tests
 # you have to disable django_heroku.settings(locals()) 
 
-env = environ.Env()
+env = environ.Env(DATABASE_URL=(str, ""),)
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -28,6 +28,13 @@ if "test" in sys.argv or "test_coverage" in sys.argv:
     # This should work also for test with Heroku Database
     # DATABASES['default'] = dj_database_url.parse(env('TEST_DATABASE_URL'))
     # DATABASES['default']['TEST']={'NAME': env('TEST_DATABASE_NAME')}
-else:
+elif env('DATABASE_URL'):
     # This setting reset DATABASES and use 'DATABASE_URL' by default
     DATABASES['default'] = dj_database_url.config(conn_max_age=0)
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'mydatabase'
+        }
+    }
