@@ -10,7 +10,7 @@
 A forum app that requires authorization.
 
 You can use the following credentials or register using a fake email address.  
-user: quest  
+user: guest  
 password: 2VggV22v
 
 ## Main features:
