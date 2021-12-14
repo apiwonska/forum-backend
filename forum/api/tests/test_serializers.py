@@ -42,17 +42,8 @@ class UserSerializerTestCase(BaseSerializerTestCase):
         Ensure data property contains expected fields.
         """
         serializer = UserSerializer(instance=self.user)
-        fields = ['id', 'username', 'avatar_thumbnail']
+        fields = ['id', 'username', 'avatar']
         self.assertCountEqual(serializer.data, fields)
-    
-    def test_avatar_thumbnail_field_is_read_only(self):
-        """
-        Ensure avatar_thumbnail field is read only.
-        """
-        serializer = UserSerializer(instance=self.user)
-        field = serializer._declared_fields['avatar_thumbnail']
-        self.assertTrue(field.read_only)
-
 
 class CategorySerializerTestCase(BaseSerializerTestCase):
 

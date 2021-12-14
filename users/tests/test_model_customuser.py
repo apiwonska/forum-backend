@@ -34,8 +34,3 @@ class CustomUserModelTestCase(TestCase):
         """
         self.assertEqual(len(Token.objects.filter(user=self.user)), 1)
 
-    def test_default_avatar_assigned(self):
-        """
-        Default avatar image should be assigned if the user don't pick an avatar image.
-        """
-        self.assertEqual(self.user.avatar.url, '/media/users/blank-profile-picture.jpeg')

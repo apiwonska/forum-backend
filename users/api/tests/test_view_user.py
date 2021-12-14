@@ -76,34 +76,7 @@ class UserViewSetTestCase(test.APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(set(response.data.keys()), set(['id', 'username', 'date_joined', 'status', 'description', 'avatar']))
-
-    def test_retrieve_user_own_profile_avatar_is_absolute_url(self):
-        """
-        Ensure that avatar field is absolute url. Retrieve single user object, user's own profile.
-        """
-        url = reverse('user-detail', kwargs={ "pk": self.user.id })
-        response = self.client.get(url)
-        avatar_url = response.data['avatar']
-        self.assertTrue(self.is_absolute(avatar_url))
-
-    def test_retrieve_other_user_profile_avatar_is_absolute_url(self):
-        """
-        Ensure that avatar field is absolute url. Retrieve single object, other user's profile.
-        """
-        url = reverse('user-detail', kwargs={ "pk": self.user.id })
-        response = self.client.get(url)
-        avatar_url = response.data['avatar']
-        self.assertTrue(self.is_absolute(avatar_url))
-    
-    def test_retrieve_users_list_avatar_is_absolute_url(self):
-        """
-        Ensure that avatar field is absolute url. Retrieve a list of users objects.
-        """
-        url = reverse('user-list')
-        response = self.client.get(url)
-        avatar_url = response.data['results'][0]['avatar']
-        self.assertTrue(self.is_absolute(avatar_url))
-    
+      
     def test_create_user_not_allowed(self):
         """
         User is not allowed to create new user object.
