@@ -1,6 +1,9 @@
-# Forum App
+# Forum App: Back-end
 
-[Live demo](https://forum-ap.netlify.app/)  
+[Forum App Live Demo](https://forum-ap.netlify.app/)
+[REST API Documentation Swagger UI](https://forum-backend-ap.herokuapp.com/api/schema/swagger-ui/)
+[REST API Documentation Redoc](https://forum-backend-ap.herokuapp.com/api/schema/redoc/)
+
 [Github: front-end](https://github.com/apiwonska/forum-frontend)  
 [Github: back-end](https://github.com/apiwonska/forum-backend)
 
@@ -16,6 +19,7 @@ password: 2VggV22v
 - Password recovery
 - Django admin panel
 - User profiles
+- REST API documentation
   
 ## How it works:
 - Access to the forum is restricted to authenticated users
@@ -36,6 +40,7 @@ password: 2VggV22v
 - Deployed with Heroku and AWS S3 for static files  
 - django-environ
 - Token Authentication
+- drf-spectacular for swagger documentation generation
 
 ## Routes
 - GET /categories
@@ -63,3 +68,6 @@ password: 2VggV22v
 - POST /registration/
 - POST /token-auth/
 - PUT/PATCH /change-password/
+
+## Things to do:
+- Customize drf-spectacular API documentation for "api/posts/" and "api/threads/"

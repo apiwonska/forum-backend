@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "django_rest_passwordreset",
     "corsheaders",
+    "drf_spectacular",
     # Local apps
     "users",
     "forum",
@@ -153,7 +154,15 @@ REST_FRAMEWORK = {
     # 'DEFAULT_PAGINATION_CLASS': 'forumproject.pagination.StandardResultsSetPagination',
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 5,
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 CORS_ORIGIN_WHITELIST=env("CORS_ORIGIN_WHITELIST").split(",")
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Forum API',
+    'DESCRIPTION': 'REST API documentation for Forum Project. Created by Anna Piwońska',
+    'VERSION': '1.0.0',
+    # OTHER SETTINGS
+}
 

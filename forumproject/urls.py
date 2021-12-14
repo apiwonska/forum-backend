@@ -4,6 +4,7 @@ from django.urls import path, include, re_path
 from rest_framework import routers
 from django.views.generic import TemplateView
 from django.views.decorators.cache import never_cache
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 from forum.api.views import CategoryViewSet, ThreadViewSet, PostViewSet
 from users.api.views import (
@@ -28,6 +29,10 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/', include('users.api.urls')),
     path('admin/', admin.site.urls),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    path('', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]
 
 if settings.DEBUG:
@@ -35,3 +40,4 @@ if settings.DEBUG:
 
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

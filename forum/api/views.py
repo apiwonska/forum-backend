@@ -12,10 +12,6 @@ from .serializers import CategorySerializer, PostSerializer, ThreadSerializer
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     """Allowed methods: get, head, options.
-
-    Routes:
-    GET /categories
-    GET /categories/1
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -28,17 +24,17 @@ class ThreadViewSet(viewsets.ModelViewSet):
     """A class based view with custom create and patch methods. 
     Allowed http methods: get, post, put, patch, head, options. Delete http method is not allowed.
     User can update only threads, that belong to them.
-
-    Routes:
-    GET /threads
-    GET /threads/?category=1
+    
     GET /threads/?search=xyz
+    
     GET /threads/?ordering=created
-    GET /threads/1
-    POST /threads
-    PUT/PATCH /threads/1
-
-    Ordering is possible by 'created' or 'latest_post_time'. Default ordering is from the latest posts. 
+    
+    Valid values for ordering parameter: 'created'/ 'latest_post_time' (order from the oldest), 
+    '-created'/ '-latest_post_time' (order from the newest). Default ordering is from the latest posts. 
+    
+    You can also get thread by category:
+    
+    GET /threads/?category=1
     """
     serializer_class = ThreadSerializer
     http_method_names = ['get', 'post', 'put', 'patch', 'head', 'options']
@@ -107,19 +103,19 @@ class PostViewSet(viewsets.ModelViewSet):
     """A class based view with custom create and patch methods. 
     Allowed http methods: get, post, put, patch, delete, head, options.
     User can update and delete only posts, that belong to them.
-
-    Routes:
-    GET /posts
-    GET /posts/?user=1
-    GET /posts/?thread=1
+    
     GET /posts/?search=xyz
+    
     GET /posts/?ordering=created
-    GET /posts/1
-    POST /posts
-    PUT/PATCH /posts/1
-    DELETE /posts/1
 
-    Ordering is possible by 'created' field. Default ordering is from the oldest posts. 
+    Valid values for ordering parameter: 'created' (order from the oldest), 
+    '-created' (order from the newest). Default ordering is from the oldest posts. 
+    
+    You can also get posts by user and / or thread:
+
+    GET /posts/?user=1
+    
+    GET /posts/?thread=1
     
     """
     serializer_class = PostSerializer
